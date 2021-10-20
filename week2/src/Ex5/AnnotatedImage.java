@@ -19,16 +19,20 @@ public class AnnotatedImage {
         return this.annotations;
     }
 
+    //Поиск по координатам
     public Annotation findByPoint(int x, int y) {
+        //Проходим по всем элементам массива и вызываем у их фигур метод для проверки принодлежности ей
         for (Annotation annotation : annotations) {
             if(annotation.getFigure().chekByPoint(x, y)) {
                 return annotation;
             }
         }
+        //Если ничего не нашли
         System.out.println("Not Found Annotation");
         return new Annotation(new Figure(), "Empty");
     }
 
+    //Метод поиска по подписи
     public Annotation findByLabel(String label) {
         for (Annotation annotation : annotations) {
             if(annotation.chekBySignature(label)) {

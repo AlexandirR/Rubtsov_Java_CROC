@@ -34,6 +34,7 @@ public class Department {
         this.departments.add(department);
     }
 
+    //Рекурсивно вызываем метод поиска общего времени работы от всех детей в дереве иерархии
     public int getAllWorkTime() {
         int workTimeChildren = 0;
         for (Department department: departments) {
@@ -42,6 +43,8 @@ public class Department {
         return this.workTime + workTimeChildren;
     }
 
+
+    //Рекурсивно выводим дерево иерархии по DFS
     public void printHierarchy(int indentLevel) {
         String indent = "    ";
         for(int i = 0; i< indentLevel; ++i) {

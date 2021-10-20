@@ -19,6 +19,7 @@ public class AnnotatedImage {
         return this.annotations;
     }
 
+    //Вывод массива Annotation
     public void printAnnotations() {
         for (Annotation annotation : annotations) {
             System.out.println(annotation);
