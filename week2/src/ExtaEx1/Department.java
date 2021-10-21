@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
+    protected Department parent;
     protected String name;
     protected int workTime;
     protected List<Department> departments;
@@ -24,10 +25,25 @@ public class Department {
         return workTime;
     }
 
-    public Department(int workTime, ArrayList<Department> departments, String name) {
+    public Department getParent() { return parent; }
+
+    public void setParent(Department parent) { this.parent = parent; }
+
+    public Department() {
+        this.name = "NAN";
+        this.workTime = 0;
+        this.departments = new ArrayList<Department>();
+        this.parent = null;
+    }
+
+    public Department(int workTime, ArrayList<Department> departments, Department parent, String name) {
         this.name = name;
         this.workTime = workTime;
         this.departments = departments;
+        this.parent = parent;
+        if(parent != null) {
+            parent.addDepartmentChild(this);
+        }
     }
 
     public void addDepartmentChild(Department department) {
