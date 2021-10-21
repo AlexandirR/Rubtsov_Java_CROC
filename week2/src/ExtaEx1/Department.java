@@ -27,7 +27,12 @@ public class Department {
 
     public Department getParent() { return parent; }
 
-    public void setParent(Department parent) { this.parent = parent; }
+    public void setParent(Department parent) {
+        this.parent = parent;
+        if(parent != null) {
+            parent.addDepartmentChild(this);
+        }
+    }
 
     public Department() {
         this.name = "NAN";
