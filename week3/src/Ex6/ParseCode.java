@@ -20,6 +20,7 @@ public class ParseCode {
     }
 
     public static void main(String[] args) {
+        //пример для проверки
         String code = """
 /*
  * My first ever program in Java!
