@@ -9,7 +9,7 @@ public class ParseCode {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String parseCode (String code) {
-        Pattern pattern = Pattern.compile("//.*|(\\\"(?:\\\\\\\\[^\\\"]|\\\\\\\\\\\"|.)*?\\\")|(?s)/\\\\*.*?\\\\*/");
+        Pattern pattern = Pattern.compile("//.*|(\"(?:\\\\[^\"]|\\\\\"|.)*?\")|(?s)/\\*.*?\\*/");
         StringBuilder blurred = new StringBuilder();
         Matcher matcher = pattern.matcher(code);
         while (matcher.find()) {
