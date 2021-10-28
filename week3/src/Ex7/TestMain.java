@@ -8,12 +8,10 @@ public class TestMain {
     private static ChessPosition[] chessPositions;
 
     //считывание и парсинг входных данных
-    public static ChessPosition[] input() throws IllegalPositionException {
-        String mas = scanner.nextLine();
-        String[] strings = mas.split(" ");
-        ChessPosition[] chessPositions = new ChessPosition[strings.length];
-        for (int i = 0; i < strings.length; ++i) {
-            chessPositions[i] = ChessPosition.parse(strings[i]);
+    public static ChessPosition[] input(String[] args) throws IllegalPositionException {
+        ChessPosition[] chessPositions = new ChessPosition[args.length];
+        for (int i = 0; i < args.length; ++i) {
+            chessPositions[i] = ChessPosition.parse(args[i]);
         }
         return chessPositions;
     }
@@ -24,7 +22,7 @@ public class TestMain {
 
     public static void main(String[] args) {
         try {
-            chessPositions = input();
+            chessPositions = input(args);
             if(move()){
                 System.out.println("OK");
             }
@@ -34,6 +32,9 @@ public class TestMain {
         }
         catch (IllegalMoveException ex) {
             System.out.println(ex.getMessage());
+        }
+        catch (Exception ex) {
+            System.out.println("It's not my Error..\n" + ex.getMessage());
         }
     }
 }

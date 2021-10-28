@@ -10,8 +10,16 @@ public class IllegalPositionException extends Exception {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     @Override
     public String getMessage() {
-        return "Coordinates " + this.x + " " + this.y + " are outside the board! (1-8, 1-8)";
+        return "Coordinates " + this.x + " " + this.y + " are outside the board! (a-h, 1-8)";
     }
 }

@@ -37,7 +37,7 @@ public class ChessPosition {
             throw new IllegalPositionException(x, y, new IllegalArgumentException());
     }
 
-    // проверка для 2 точек являются ли они ходами кодня друг относительно друга
+    // проверка для 2 точек являются ли они ходами коня друг относительно друга
     public boolean checkTwo(ChessPosition chessPosition) throws IllegalMoveException {
         if((Math.abs(this.x - chessPosition.x) == 1 && Math.abs(this.y - chessPosition.y) == 2 )
                 || (Math.abs(this.x - chessPosition.x) == 2 && Math.abs(this.y - chessPosition.y) == 1)) {
