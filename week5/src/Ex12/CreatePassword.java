@@ -1,9 +1,5 @@
 package Ex12;
 
-/*
-Оно работает, по почему-то не на всех вариантах количетсва потоков(для степеней 2 работает вроде), сам пароль из примера passwrd
- */
-
 public class CreatePassword {
 
     public static volatile String password;

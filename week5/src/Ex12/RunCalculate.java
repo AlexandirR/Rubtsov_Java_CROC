@@ -7,8 +7,8 @@ public class RunCalculate implements Runnable {
     private final int number;
     private final int count;
     private final int symbols;
-    private long[] begin;
-    private long[] end;
+    private long begin;
+    private long end;
     private final int alphabet = 26;
     private final long countSymbols;
     private static volatile boolean findPassword = false;
@@ -20,33 +20,21 @@ public class RunCalculate implements Runnable {
         this.number = number;
         this.count = count;
         this.symbols = symbols;
-        begin = new long[symbols];
-        end = new long[symbols];
-        countSymbols = (long)(Math.pow(26,symbols));
+        countSymbols = (long)(Math.pow(26, symbols));
+        begin = (countSymbols*(number - 1))/count;
+        end = (countSymbols*number)/count - 1;
     }
 
     @Override
     public void run() {
-        StringBuilder password = new StringBuilder("");
-        createBounds();
-        recPas(password, symbols - 1);
-    }
-
-    private void recPas(StringBuilder password, int level) {
-        if(level != -1) {
-            for (long i = begin[level]; i <= end[level]; ++i) {
-                password.append((char)('a' + (int)(i)));
-                recPas(password, level - 1);
-                if(findPassword) {
-                    return;
+        System.out.println(begin + " " + end);
+        for (long i = begin; i <= end && !findPassword; ++i) {
+            String password = createCombination(i).toString();
+            //System.out.println(password);
+                if (hashPassword(password).equals(CreatePassword.hex)) {
+                    CreatePassword.password = password;
+                    findPassword = true;
                 }
-                password.deleteCharAt(password.length() - 1);
-            }
-        }
-        else if(hashPassword(password.toString()).equals(CreatePassword.hex)) {
-                CreatePassword.password = password.toString();
-                findPassword = true;
-                return;
         }
     }
 
@@ -72,16 +60,16 @@ public class RunCalculate implements Runnable {
     }
 
 
-    private void createBounds() {
-        long startPos = (countSymbols*(number - 1))/count;
+    private StringBuilder createCombination(long hex) {
+        int[] password = new int[symbols];
         for(int i = 1; i <= symbols; ++i) {
-            begin[i - 1] = startPos%alphabet;
-            startPos /= alphabet;
+            password[i - 1] = (int) (hex%alphabet);
+            hex /= alphabet;
         }
-        long endPos = (countSymbols*number)/count - 1;
-        for(int i = 1; i <= symbols; ++i) {
-            end[i - 1] = endPos%alphabet;
-            endPos /= alphabet;
+        StringBuilder pass = new StringBuilder("");
+        for(int i = 0; i < symbols; ++i) {
+            pass.append((char)('a' + password[i]));
         }
+        return pass;
     }
 }
