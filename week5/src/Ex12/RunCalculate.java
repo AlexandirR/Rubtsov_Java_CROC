@@ -4,13 +4,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class RunCalculate implements Runnable {
-    private final int number;
-    private final int count;
-    private final int symbols;
+    private final int number; //номер блока
+    private final int count; //количество блоков
+    private final int symbols; //количество символов пароля
     private long begin;
-    private long end;
-    private final int alphabet = 26;
-    private final long countSymbols;
+    private long end; // начало и конец блока паролей обрабатываемого конкретным потоком
+    private final int alphabet = 26; //размер алфавита
+    private final long countSymbols; // всего вариантов паролей
     private static volatile boolean findPassword = false;
     private static final char[] HEX_DIGITS = "0123456789ABCDEF".toCharArray();
 
@@ -27,10 +27,8 @@ public class RunCalculate implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(begin + " " + end);
         for (long i = begin; i <= end && !findPassword; ++i) {
             String password = createCombination(i).toString();
-            //System.out.println(password);
                 if (hashPassword(password).equals(CreatePassword.hex)) {
                     CreatePassword.password = password;
                     findPassword = true;
@@ -60,6 +58,7 @@ public class RunCalculate implements Runnable {
     }
 
 
+    //Создает строку пароля из ее номера во всех вариантах перестановок
     private StringBuilder createCombination(long hex) {
         int[] password = new int[symbols];
         for(int i = 1; i <= symbols; ++i) {
