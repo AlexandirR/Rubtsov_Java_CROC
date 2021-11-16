@@ -4,14 +4,14 @@ public class Lot {
 
     private volatile int cost;
     private volatile String name = "";
-    private final int endTime;
+    private final long endTime;
 
-    public Lot(int startCost, int endTime) {
+    public Lot(int startCost, long endTime) {
         this.endTime = endTime;
         this.cost = startCost;
     }
 
-    public void bid(String name, int cost, int time) {
+    public void bid(String name, int cost, long time) {
             if (cost > this.cost && time < this.endTime) {
                 synchronized (this) {
                     if (cost > this.cost) {
@@ -22,7 +22,7 @@ public class Lot {
             }
     }
 
-    public String nowWin(int time) {
+    public String nowWin(long time) {
         if(time >= endTime) {
             return this.name;
         }
