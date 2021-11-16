@@ -23,7 +23,7 @@ public class Lot {
     }
 
     public String nowWin(int time) {
-        if(time < endTime) {
+        if(time >= endTime) {
             return this.name;
         }
         else {
