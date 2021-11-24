@@ -23,7 +23,7 @@ public class Recommendation {
             Set<Integer> result = new HashSet<>();
             result.addAll(userFilms);
             result.retainAll(views);
-            if(result.size() >= userFilms.size()/2) {
+            if(result.size() >= (userFilms.size() - 1)/2 + 1) {
                 Set<Integer> removes = new HashSet<>();
                 removes.addAll(views);
                 removes.removeAll(userFilms);
