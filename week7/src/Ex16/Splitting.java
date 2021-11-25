@@ -8,7 +8,7 @@ import java.util.*;
 public class Splitting {
 
     // Делаем реверс мапу, где ключ это пара значений - возратсные границы, а значения это сет с набором личностей этого возраста
-    public static void initializeMap (TreeMap<Pair<Integer, Integer>, Set<Person>> splitPersons, String[] args) {
+    public static void initializeMap (Map<Pair<Integer, Integer>, Set<Person>> splitPersons, String[] args) {
         int leftLevel = 0;
         int rightLevel;
         for(String arg : args) {
@@ -20,7 +20,7 @@ public class Splitting {
     }
 
     //вывод мапы
-    public static void outputMap (TreeMap<Pair<Integer, Integer>, Set<Person>> splitPersons) {
+    public static void outputMap (Map<Pair<Integer, Integer>, Set<Person>> splitPersons) {
         for (Map.Entry entry : splitPersons.entrySet()) {
             if(((TreeSet<Person>) entry.getValue()).size() != 0) {
                 System.out.print(entry.getKey() + ": ");

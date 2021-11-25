@@ -1,6 +1,6 @@
 package Ex16.entities;
 
-public class Pair<T1 extends Comparable, T2 extends Comparable> implements Comparable {
+public class Pair<T1 extends Comparable, T2> implements Comparable {
     private T1 first = null;
     private T2 second = null;
 
