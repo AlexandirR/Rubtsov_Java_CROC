@@ -21,7 +21,6 @@ public interface BlackListFilter<T> {
         for (T comment : comments) {
                 if(!predicate.test(comment)) {
                     filterComments.add(comment);
-                    break;
                 }
         }
         return filterComments;
